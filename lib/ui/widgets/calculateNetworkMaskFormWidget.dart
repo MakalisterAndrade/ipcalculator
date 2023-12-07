@@ -26,11 +26,11 @@ class _CalculateNetworkMaskFormWidgetState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const Text(
-          'Calculate the subnet based on an IP address and the CIDR suffix:',
+          'Calcule a sub-rede com base em um endereço IP e no sufixo CIDR:',
           textScaleFactor: 1.4,
         ),
         const Text(
-            'This function allows you to calculate the subnet based on an IP address and CIDR suffix for both IPv4 and IPv6. You need to enter the IP address and CIDR suffix, and the program will calculate the subnet address, broadcast address, subnet mask, number of hosts, and usable host range for both versions of IP.'),
+            'Esta função permite calcular a sub-rede com base em um endereço IP e sufixo CIDR para IPv4 e IPv6. Você precisa inserir o endereço IP e o sufixo CIDR, e o programa calculará o endereço de sub-rede, endereço de broadcast, máscara de sub-rede, número de hosts e intervalo de hosts utilizável para ambas as versões de IP.'),
         Form(
           key: _formKey,
           child: Column(
@@ -39,14 +39,14 @@ class _CalculateNetworkMaskFormWidgetState
               TextFormField(
                 validator: (String? value) {
                   if (value!.isEmpty) {
-                    return 'Insert IPAddress';
+                    return 'Insira o IPAddress';
                   }
                   if (!IPMath.isValidIPv4AddressString(value) &&
                       (':'.allMatches(value).length < 2 ||
                           !IPMath.isValidIPv6AddressString(
                               IPMath.expandIPv6StringToFullIPv6String(
                                   value)))) {
-                    return 'No valid IPAddress';
+                    return 'IPAddress inválido';
                   }
                   return null;
                 },
@@ -59,18 +59,18 @@ class _CalculateNetworkMaskFormWidgetState
                 keyboardType: TextInputType.number,
                 validator: (String? value) {
                   if (value!.isEmpty) {
-                    return 'Insert Suffix';
+                    return 'Insira o Suffix';
                   }
                   final int? suffixInt = int.tryParse(value);
                   if (suffixInt == null) {
-                    return 'Suffix should be an integer';
+                    return 'Suffix deveria ser um inteiro';
                   }
                   if (IPMath.isValidIPv4AddressString(_inputIPAddressString) &&
                       !IPMath.isValidIPv4Suffix(suffixInt)) {
-                    return 'Suffix must be between 1 and 32';
+                    return 'Suffix deve estar entre 1 e 32';
                   }
                   if (!IPMath.isValidIPv6Suffix(suffixInt)) {
-                    return 'Suffix must be between 1 and 128';
+                    return 'Suffix deve estar entre 1 e 128';
                   }
                   return null;
                 },
@@ -97,7 +97,7 @@ class _CalculateNetworkMaskFormWidgetState
                           widget.networkMaskBySuffixSink.add(networkMask);
                         }
                       },
-                      child: const Text('Submit'),
+                      child: const Text('Calcular'),
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -108,7 +108,7 @@ class _CalculateNetworkMaskFormWidgetState
                         primary: Colors.red, // background
                         onPrimary: Colors.white, // foreground
                       ),
-                      child: const Text('Reset'),
+                      child: const Text('Limpar'),
                     ),
                   ],
                 ),

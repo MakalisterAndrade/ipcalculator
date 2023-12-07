@@ -28,11 +28,11 @@ class _CalculateNetworkMaskFormByTwoAddressWidgetState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const Text(
-          'Calculate the subnet based on two IP addresses:',
+          'Calcule a sub-rede com base em dois endereços IP:',
           textScaleFactor: 1.4,
         ),
         const Text(
-            'This function allows you to calculate the subnet based on two IP addresses for both IPv4 and IPv6. You need to enter the two IP addresses and the program will calculate the subnet address, broadcast address, subnet mask, number of hosts, and usable host range for both versions of IP.'),
+            'Esta função permite calcular a sub-rede com base em dois endereços IP para IPv4 e IPv6. Você precisa inserir os dois endereços IP e o programa calculará o endereço de sub-rede, endereço de broadcast, máscara de sub-rede, número de hosts e intervalo de hosts utilizável para ambas as versões de IP.'),
         Form(
           key: _formKey,
           child: Column(
@@ -41,7 +41,7 @@ class _CalculateNetworkMaskFormByTwoAddressWidgetState
               TextFormField(
                 validator: (String? value) {
                   if (value!.isEmpty) {
-                    return 'Insert IPAddress';
+                    return 'Insira o IPAddress';
                   }
 
                   print(value);
@@ -51,7 +51,7 @@ class _CalculateNetworkMaskFormByTwoAddressWidgetState
                           !IPMath.isValidIPv6AddressString(
                               IPMath.expandIPv6StringToFullIPv6String(
                                   value)))) {
-                    return 'No valid IPAddress';
+                    return 'IPAddress inválido';
                   }
                   return null;
                 },
@@ -63,14 +63,14 @@ class _CalculateNetworkMaskFormByTwoAddressWidgetState
               TextFormField(
                 validator: (String? value) {
                   if (value!.isEmpty) {
-                    return 'Insert IPAddress';
+                    return 'Insira o IPAddress';
                   }
                   if (!IPMath.isValidIPv4AddressString(value) &&
                       (':'.allMatches(value).length < 2 ||
                           !IPMath.isValidIPv6AddressString(
                               IPMath.expandIPv6StringToFullIPv6String(
                                   value)))) {
-                    return 'No valid IPAddress';
+                    return 'IPAddress inválido';
                   }
                   return null;
                 },
@@ -170,7 +170,7 @@ class _CalculateNetworkMaskFormByTwoAddressWidgetState
                           widget.networkMaskByTwoAddressSink.add(networkMask);
                         }
                       },
-                      child: const Text('Submit'),
+                      child: const Text('Calcular'),
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -181,7 +181,7 @@ class _CalculateNetworkMaskFormByTwoAddressWidgetState
                         primary: Colors.red, // background
                         onPrimary: Colors.white, // foreground
                       ),
-                      child: const Text('Reset'),
+                      child: const Text('Limpar'),
                     ),
                   ],
                 ),

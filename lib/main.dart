@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
     900: const Color.fromRGBO(33, 37, 41, 1)
   };
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
