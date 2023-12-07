@@ -59,7 +59,7 @@ class _NetworkManagerMainScreenState extends State<NetworkManagerMainScreen> {
                   ),
                   onPressed: () async => canLaunch(_sourceCodeUrl) != null
                       ? await launch(_sourceCodeUrl)
-                      : throw 'Could not launch $_sourceCodeUrl',
+                      : throw 'Não foi possível encontrar a url $_sourceCodeUrl',
                   child: const Text('Source-Code'),
                 )
               ],

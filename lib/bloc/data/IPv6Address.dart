@@ -3,9 +3,9 @@ import 'package:ipcalculator/bloc/data/IPMath.dart';
 class IPv6Address {
   IPv6Address(List<String> iPv6List, {bool isIPv4Address = false}) {
     if (iPv6List.length != IPMath.iPv6AddressByteBlockCount) {
-      throw 'Invalid IPv6Address, should have ' +
+      throw 'IPv6Address inválido, deveria ter mais ' +
           IPMath.iPv6AddressByteBlockCount.toString() +
-          ' parts';
+          ' partes';
     }
     _iPv6List = iPv6List;
     _isIPv4Address = isIPv4Address;
@@ -14,7 +14,7 @@ class IPv6Address {
   factory IPv6Address.fromIPv6String(String iPv6String,
       {bool isIPv4Address = false}) {
     if (!IPMath.isValidIPv6AddressString(iPv6String)) {
-      throw 'Invalid IPv6Address $iPv6String';
+      throw 'IPv6Address inválido $iPv6String';
     }
     iPv6String = IPMath.expandIPv6StringToFullIPv6String(iPv6String);
     return IPv6Address(IPMath.iPv6StringToArray(iPv6String),

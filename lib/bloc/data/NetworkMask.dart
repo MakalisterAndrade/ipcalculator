@@ -12,7 +12,7 @@ class NetworkMask {
       iPString = IPMath.expandIPv6StringToFullIPv6String(iPString);
 
       if (!IPMath.isValidIPv6AddressString(iPString)) {
-        throw 'IPAddress invalid $iPString (NetworkMask)';
+        throw 'IPAddress inválido $iPString (NetworkMask)';
       }
       _iPv6Address = IPv6Address.fromIPv6String(iPString);
     }
