@@ -31,7 +31,7 @@ class _NetworkMaskInfoWidgetState extends State<NetworkMaskInfoWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const Text(
-                'Mask was calculated:',
+                'Descrição da rede:',
                 textScaleFactor: 1.2,
               ),
               SelectionArea(
