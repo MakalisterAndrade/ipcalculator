@@ -1,5 +1,5 @@
-import 'package:ipcalculator/bloc/data/IPMath.dart';
-import 'package:ipcalculator/bloc/data/IPv6Address.dart';
+import 'package:ipcalculator/controller/data/IPMath.dart';
+import 'package:ipcalculator/controller/data/IPv6Address.dart';
 
 class NetworkMask {
   NetworkMask(String iPString, int suffix, {bool showIPOnPrint = true}) {
