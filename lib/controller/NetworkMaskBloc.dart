@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:ipcalculator/bloc/data/NetworkMask.dart';
+import 'package:ipcalculator/controller/data/NetworkMask.dart';
 
 class NetworkMaskBloc {
   final StreamController<NetworkMask?> _networkMaskBySuffixController =

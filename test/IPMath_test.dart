@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ipcalculator/bloc/data/IPMath.dart';
+import 'package:ipcalculator/controller/data/IPMath.dart';
 
 void main() {
   test('Test binaryToIPv6String', () {

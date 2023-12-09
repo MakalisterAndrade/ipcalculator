@@ -1,4 +1,4 @@
-import 'package:ipcalculator/bloc/data/IPv6Address.dart';
+import 'package:ipcalculator/controller/data/IPv6Address.dart';
 
 class IPMath {
   static int iPv6AddressByteCount = 128;

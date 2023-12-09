@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ipcalculator/bloc/data/IPMath.dart';
-import 'package:ipcalculator/bloc/data/NetworkMask.dart';
+import 'package:ipcalculator/controller/data/IPMath.dart';
+import 'package:ipcalculator/controller/data/NetworkMask.dart';
 
 class CalculateNetworkMaskFormWidget extends StatefulWidget {
   const CalculateNetworkMaskFormWidget(this.networkMaskBySuffixSink);
@@ -25,12 +25,7 @@ class _CalculateNetworkMaskFormWidgetState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text(
-          'Calcule a sub-rede com base em um endereço IP e no sufixo CIDR:',
-          textScaleFactor: 1.4,
-        ),
-        const Text(
-            'Esta função permite calcular a sub-rede com base em um endereço IP e sufixo CIDR para IPv4 e IPv6. Você precisa inserir o endereço IP e o sufixo CIDR, e o programa calculará o endereço de sub-rede, endereço de broadcast, máscara de sub-rede, número de hosts e intervalo de hosts utilizável para ambas as versões de IP.'),
+        SizedBox(height: 8,),
         Form(
           key: _formKey,
           child: Column(
@@ -51,10 +46,18 @@ class _CalculateNetworkMaskFormWidgetState
                   return null;
                 },
                 onChanged: (String value) => _inputIPAddressString = value,
-                decoration: const InputDecoration(
-                  labelText: 'IPAddress:',
+                decoration: InputDecoration(
+                  labelText: '192.168.1.0',
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      _formKey.currentState!.reset();
+                      widget.networkMaskBySuffixSink.add(null);
+                    },
+                    icon: const Icon(Icons.clear),
+                  ),
                 ),
               ),
+              SizedBox(height: 11,),
               TextFormField(
                 keyboardType: TextInputType.number,
                 validator: (String? value) {
@@ -80,42 +83,60 @@ class _CalculateNetworkMaskFormWidgetState
                     _inputSuffix = parse;
                   }
                 },
-                decoration: const InputDecoration(
-                  labelText: 'Suffix:',
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          final NetworkMask networkMask =
-                              NetworkMask(_inputIPAddressString, _inputSuffix);
-                          widget.networkMaskBySuffixSink.add(networkMask);
-                        }
-                      },
-                      child: const Text('Calcular'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        _formKey.currentState!.reset();
-                        widget.networkMaskBySuffixSink.add(null);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.red, // background
-                        onPrimary: Colors.white, // foreground
-                      ),
-                      child: const Text('Limpar'),
-                    ),
-                  ],
+                decoration: InputDecoration(
+                  labelText: '24',
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      _formKey.currentState!.reset();
+                      widget.networkMaskBySuffixSink.add(null);
+                    },
+                    icon: const Icon(Icons.clear),
+                  ),
                 ),
               ),
             ],
           ),
         ),
+        SizedBox(height: 10,),
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                final NetworkMask networkMask =
+                NetworkMask(_inputIPAddressString, _inputSuffix);
+                widget.networkMaskBySuffixSink.add(networkMask);
+              }
+            },
+            child: const Text('Calcular'),
+          ),
+        ),
+        SizedBox(height: 18,),
+        const Card(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.lightbulb_outlined),
+                    SizedBox(width: 8,),
+                    Text("Dica", style: TextStyle(fontWeight: FontWeight.bold),)
+                  ],
+                ),
+                SizedBox(height: 16,),
+                Text('Esta função permite calcular a sub-rede com '
+                    'base em um endereço IP e sufixo CIDR para IPv4 e'
+                    ' IPv6. Você precisa inserir o endereço IP e o sufixo'
+                    ' CIDR, e o programa calculará o endereço de '
+                    'sub-rede, endereço de broadcast, máscara de sub-rede,'
+                    ' número de hosts e intervalo de hosts utilizável para'
+                    ' ambas as versões de IP.'),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 18,),
       ],
     );
   }

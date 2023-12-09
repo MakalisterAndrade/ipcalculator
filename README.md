@@ -2,6 +2,10 @@
 
 Calculate easily IPv4 and IPv6 Subnets!
 
+## Screenshot
+
+![](/readme/0.png)
+
 ## Installation
 
 Download executable from the [latest release](https://github.com/MakalisterAndrade/ipcalculator/releases).
